@@ -1,0 +1,28 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+repositories {
+    maven { url 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
+    maven { url 'https://jitpack.io' }
+    maven { url 'https://repo.codemc.org/repository/maven-public/' }
+}
+
+dependencies {
+    compileOnly 'ink.ptms.core:v11802:11802:universal'
+    compileOnly 'ink.ptms.core:v11701:11701:universal'
+    compileOnly 'me.clip:placeholderapi:2.11.1'
+    compileOnly 'org.jetbrains:annotations:21.0.0'
+
+    compileOnly 'com.saicone.rtag:rtag:1.0.0'
+    compileOnly 'com.saicone.rtag:rtag-item:1.0.0'
+    compileOnly 'de.tr7zw:item-nbt-api-plugin:2.9.2'
+    implementation 'io.github.bananapuncher714:nbteditor:7.18.1'
+}
+
+shadowJar {
+    relocate 'io.github.bananapuncher714.nbteditor', project.group + '.placeholder.lib.nbteditor'
+    minimize()
+}
+
+jar.dependsOn (shadowJar)
